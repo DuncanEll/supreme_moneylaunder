@@ -1,12 +1,16 @@
-ESX = nil
+ESX = exports["es_extended"]:getSharedObject()
 
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+local locations2 = {
+    vector3(951.527,5.397,110.283)
+    -- add more vector3
+}
 
 Citizen.CreateThread(function()
-    local launder = vector3(-1869.86, 2064.47, 134.50)
-    local laundertext = vector3(-1869.86, 2064.65, 135.45)
     while true do
         Wait(0)
+        for k,v in pairs(locations2) do
+        local launder = vector3(v.x,v.y,v.z)
+        local laundertext = vector3(v.x,v.y,v.z)
         local location = GetEntityCoords(GetPlayerPed(-1))
         local dist = #(location - launder)
 
@@ -46,4 +50,5 @@ Citizen.CreateThread(function()
             TriggerServerEvent("supreme_moneylaunder:GetCash")
         end
     end
+            end
 end)
